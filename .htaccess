@@ -1,0 +1,15 @@
+RewriteEngine On
+
+# Handle React routing
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^((?!api/).*)$ /index.html [L]
+
+# Handle API requests
+RewriteCond %{REQUEST_URI} ^/api/
+RewriteRule ^api/(.*) http://localhost:3000/api/$1 [P,L]
+
+# Enable CORS
+Header set Access-Control-Allow-Origin "*"
+Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+Header set Access-Control-Allow-Headers "Content-Type, Authorization" 
